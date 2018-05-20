@@ -36,16 +36,18 @@ function main() {
         let stack = []
 
         for (let i = 0; i < arr.length; i++) {
-            if(arr[i] == '('){
-                stack.push(')')
-            }else if(arr[i] == '['){
-                stack.push(']')
-            }else if(arr[i] == '{'){
-                stack.push('}')
-            }else{
-                if(stack.length == 0 || arr[i] !== stack[stack.length-1]){
-                    return 'NO'
-                }
+            if((/[\[\{\(]/).test(arr[i])){
+                stack.push(arr[i])
+            }
+            if((/[\]\}\)]/).test(arr[i]) && stack.length === 0){
+                return 'NO'
+            }
+            let end = stack.length > 0 ? stack.length -  1 : 0
+            let matchSquare = (arr[i] === ']' && stack[end] === '[')
+            let mathchParen =  (arr[i] === ')' && stack[end] === '(')
+            let matchCurly =  (arr[i] === '}' && stack[end] === '{')
+
+            if(matchSquare || mathchParen || matchCurly){
                 stack.pop()
             }
         }
