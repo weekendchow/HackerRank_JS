@@ -25,20 +25,16 @@ function readLine() {
 // Complete the solve function below.
 function solve(arr, money) {
 
-    let hash = {}
-    for (let i = 0; i < arr.length; i++) {
-        let val = money-arr[i];
-        if(hash[val] !== undefined){
-            console.log(arr[i], val)
-        }
-
-        else{
-            hash[arr[i]] = i
-        }
-
-    }
-
-
+  let hash = {}
+  for (let i = 0; i < arr.length; i++) {
+      let val = money-arr[i];
+      if(hash[val] !== undefined){
+          console.log(hash[val]+1, i+1)
+      }
+      else{
+          hash[arr[i]] = i
+      }
+  }
 }
 
 function main() {
